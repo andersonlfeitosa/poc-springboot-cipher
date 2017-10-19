@@ -1,0 +1,14 @@
+# Servidor HTTP
+server:
+  port: 8080
+
+# Propriedades do Spring
+spring:
+  application:
+    name: cipher
+
+encrypt:
+  key: encrypt_key
+  
+password: '{cipher}0f2e4e94982362dbd2ef8a492e6c056e006835a388a230cccb240f243d67df1f'
+#password: 'teste'
