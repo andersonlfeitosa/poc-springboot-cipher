@@ -3,6 +3,7 @@ RUN mkdir -p /opt/microservices
 ADD local_policy.jar /usr/lib/jvm/java-1.8-openjdk/jre/lib/security
 ADD US_export_policy.jar /usr/lib/jvm/java-1.8-openjdk/jre/lib/security
 ADD maven/poc-springboot-cipher.jar /opt/microservices/poc-springboot-cipher.jar
+RUN adduser -D -u 1000 usrjava
 RUN chown -R usrjava /opt/
 WORKDIR /opt/microservices
 EXPOSE 8080
