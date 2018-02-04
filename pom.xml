@@ -1,25 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>1.3.8.RELEASE</version>
+    <version>1.5.9.RELEASE</version>
   </parent>
 
-  <groupId>com.andersonlfeitosa</groupId>
-  <artifactId>poc-cipher</artifactId>
+  <groupId>com.andersonlfeitosa.poc</groupId>
+  <artifactId>poc-springboot-cipher</artifactId>
   <version>1.0.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+  
+  <organization>
+    <name>Anderson Lobo Feitosa</name>
+    <url>http://www.andersonlfeitosa.com</url>
+  </organization>
+
+  <developers>
+    <developer>
+      <name>Anderson Lobo Feitosa</name>
+      <email>andersonlf@gmail.com</email>
+      <organization>Anderson Lobo Feitosa</organization>
+      <organizationUrl>http://www.andersonlfeitosa.com</organizationUrl>
+    </developer>
+  </developers>
+  
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+    </license>
+  </licenses>
+
+  <scm>
+    <connection>scm:git:https://github.com/andersonlfeitosa/poc-springboot-cipher.git</connection>
+    <developerConnection>scm:git:https://github.com/andersonlfeitosa/poc-springboot-cipher.git</developerConnection>
+    <url>https://github.com/andersonlfeitosa/poc-springboot-cipher.git</url>
+    <tag>HEAD</tag>
+  </scm>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <java.version>1.8</java.version>
     <java.version.source>1.8</java.version.source>
     <java.version.target>1.8</java.version.target>
-    <registry>172.30.1.1:5000</registry>
+    <registry>andersonlfeitosa</registry>
   </properties>
 
   <build>
@@ -38,24 +64,12 @@
         <artifactId>spring-boot-maven-plugin</artifactId>
       </plugin>
       <plugin>
-        <artifactId>maven-failsafe-plugin</artifactId>
-        <executions>
-          <execution>
-            <goals>
-              <goal>integration-test</goal>
-              <goal>verify</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
         <groupId>io.fabric8</groupId>
         <artifactId>docker-maven-plugin</artifactId>
         <version>0.16.9</version>
         <configuration>
           <images>
             <image>
-              <!-- 10.109.15.101 -->
               <name>${registry}/${project.artifactId}:%l</name>
               <build>
                 <dockerFile>${project.basedir}/src/main/docker/Dockerfile</dockerFile>
@@ -76,7 +90,7 @@
       <dependency>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-dependencies</artifactId>
-        <version>Brixton.SR6</version>
+        <version>Edgware.SR1</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -99,31 +113,5 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-actuator</artifactId>
     </dependency>
-    <!-- spring service discovery: habilita uso do eureka -->
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-eureka</artifactId>
-    </dependency>
-    <!-- spring cloud config: habilita hystrix -->
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-hystrix</artifactId>
-    </dependency>
-    <!-- spring cloud config: habilita hystrix dashboard -->
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-hystrix-dashboard</artifactId>
-    </dependency>
-    <!-- spring cloud config: habilita feign -->
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-feign</artifactId>
-    </dependency>
-    <!-- spring cloud config: habilita turbine -->
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-turbine</artifactId>
-    </dependency>
   </dependencies>
-
 </project>

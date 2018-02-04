@@ -1,9 +1,10 @@
 FROM openjdk:8-jre-alpine
-RUN mkdir -p /opt/microservicos
-ADD maven/poc-cipher.jar /opt/microservicos/poc-cipher.jar
+RUN mkdir -p /opt/microservices
 ADD local_policy.jar /usr/lib/jvm/java-1.8-openjdk/jre/lib/security
 ADD US_export_policy.jar /usr/lib/jvm/java-1.8-openjdk/jre/lib/security
-WORKDIR /opt/microservicos
+ADD maven/poc-springboot-cipher.jar /opt/microservices/poc-springboot-cipher.jar
+RUN chown -R usrjava /opt/
+WORKDIR /opt/microservices
 EXPOSE 8080
-ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom", "-Xmx1024m", "-jar", "poc-cipher.jar"]
-
+USER usrjava
+ENTRYPOINT ["java", "-Duser.timezone=America/Sao_Paulo", "-Djava.security.egd=file:/dev/./urandom", "-Xmx1024m", "-jar", "poc-springboot-cipher.jar"]
